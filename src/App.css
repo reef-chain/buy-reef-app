@@ -1,42 +1,63 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  max-width: 600px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.fiat-currency {
+  margin-top: auto!important;
+  margin-bottom: auto!important;
+  height: 20px;
+  width: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-box {
+  background-color: #f7f8fa;
+  border: 1px solid #edeef2;
+  border-radius: 13px;
+  padding: 1rem!important;
+  display: flex!important;
+  flex-direction: row!important;
+  vertical-align: middle;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.input-box > input {
+  background-color: #f7f8fa;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  text-align: right!important;
+  flex-grow: 1!important;
 }
 
-.card {
-  padding: 2em;
+.btn-reef {
+  align-items: center;
+  background: #681cff;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 0.313rem 1.25rem -0.625rem #681cff;
+  display: flex;
+  flex-flow: row nowrap;
+  font-family: tenon,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 22.984px;
+  overflow: hidden;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  transition: all .4s;
+  white-space: nowrap;
+  color: #fff;
+  position: relative;
 }
 
-.read-the-docs {
-  color: #888;
+.pair--name {
+  line-height: 1.6;
+  padding: 8px;
+}
+
+.mx-360 {
+  min-width: 360px!important;
 }
