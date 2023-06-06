@@ -5,7 +5,7 @@ require('process');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, "src", "index.tsx"),
+  entry: path.join(__dirname, "src", "index.js"),
 
   output: {
     path:path.resolve(__dirname, "public"),
@@ -17,11 +17,6 @@ module.exports = {
         test: /\.?js$/,
         exclude: /node_modules/,
         loader: "babel-loader",
-      },
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
       },
       {
         test: /\.(png|svg|jpe?g|gif)$/i,
@@ -50,11 +45,15 @@ module.exports = {
         test: /favicon\.ico$/,
         loader: 'url-loader',
       },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ]
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.cjs'],
+    extensions: ['.js', '.jsx', '.cjs'],
     fallback: {
       'crypto': require.resolve('crypto-browserify'),
       'stream': require.resolve('stream-browserify'),

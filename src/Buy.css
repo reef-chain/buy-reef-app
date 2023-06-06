@@ -1,0 +1,21 @@
+.pair--name {
+    line-height: 1.6;
+    padding: 8px;
+}
+
+.pair--dropdown {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
+
+.chevronDown {
+    padding: 10px;
+    padding-top: 16px;
+    size: 8px;
+}
+
+.chevronDown:hover {
+    cursor: pointer;
+}
