@@ -1,0 +1,58 @@
+.loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.dot-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background-color: #a93185;
+    position: absolute;
+    animation: spin 1.3s infinite linear;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg) translateX(20px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(20px) rotate(-360deg);
+    }
+  }
+  
+  .dot:nth-child(1) {
+    animation-delay: -0.8s;
+    transform: scale(0.5);
+  }
+  
+  .dot:nth-child(2) {
+    animation-delay: -0.6s;
+    transform: scale(0.6);
+  }
+  
+  .dot:nth-child(3) {
+    animation-delay: -0.4s;
+    transform: scale(0.7);
+  }
+  
+  .dot:nth-child(4) {
+    animation-delay: -0.2s;
+    transform: scale(0.8);
+  }
+  
+  .dot:nth-child(5) {
+    animation-delay: 0s;
+    transform: scale(0.9);
+  }
+  

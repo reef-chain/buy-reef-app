@@ -1,0 +1,17 @@
+.navbar{
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.1);
+    margin: -8px -8px 10px -8px;
+    padding: 10px;
+    display: flex;
+}
+
+.logo{
+    padding-left: 50px;
+    max-width: 90px;
+}
+
+.navbar__select-account{
+    position: absolute;
+    right: 30px;
+    top: -15px;
+}
