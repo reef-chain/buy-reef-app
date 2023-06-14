@@ -1,5 +1,7 @@
 import GradientButton from '../GradientButton/GradientButton';
 import './styles.css'
+import React from 'react';
+
 
 interface Props{
     showDisplayModal:(displayModal:boolean)=>void;

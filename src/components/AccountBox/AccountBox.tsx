@@ -3,6 +3,8 @@ import { ReefAccount, toAddressShortDisplay } from '../../util';
 import './styles.css'
 import GradientButton from '../GradientButton/GradientButton';
 import TextButton from '../TextButton/TextButton';
+import React from 'react';
+
 
 interface Account {
   account: ReefAccount
