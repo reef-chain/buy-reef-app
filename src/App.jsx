@@ -1,11 +1,12 @@
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
+import { useState } from 'react'
 
 function App() {
-
+  const [modalDisplay,setModalDisplay] = useState(false);
   return (
     <>
-    <Navbar/>
+    <Navbar showDisplayModal={setModalDisplay} shouldDisplayBtn={true}/>
     </>
   )
 }

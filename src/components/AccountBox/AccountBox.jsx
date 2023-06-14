@@ -6,16 +6,7 @@ import TextButton from '../TextButton/TextButton';
 import React from 'react';
 
 
-interface Account {
-  account: ReefAccount
-  onClick?: () => void;
-  isAccountSelected?:boolean;
-  isDestAccount?:boolean;
-  showChangeAccountBtn?:boolean;
-  changeAccountFunc?:(changeAccount:boolean)=>void;
-}
-
-const Account = ({ account, onClick ,isAccountSelected,isDestAccount,showChangeAccountBtn,changeAccountFunc}: Account): JSX.Element => (
+const Account = ({ account, onClick ,isAccountSelected,isDestAccount,showChangeAccountBtn,changeAccountFunc})=> (
   <div onClick={onClick} className={`accountBox`}>
     <div className='accountBox__identicon'>
       <Identicon value={account.address} size={64} theme="substrate" />
