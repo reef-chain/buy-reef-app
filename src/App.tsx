@@ -104,7 +104,7 @@ const App = (): JSX.Element => {
 
   return (
     <div>
-      <Navbar shouldDisplayBtn={isReefExtensionInstalled && selectedReefSigner!=undefined} switchAccount={()=>setDisplayModal(true)}/>
+      <Navbar account={selectedReefSigner!} shouldDisplayBtn={isReefExtensionInstalled && selectedReefSigner!=undefined} switchAccount={()=>setDisplayModal(true)}/>
       {isReefExtensionInstalled ?
       <div>
         {selectedReefSigner?
