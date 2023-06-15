@@ -1,8 +1,11 @@
 import React from 'react'
 import "./styles.css"
 
+export interface Props{
+    text?:string;
+}
 
-function Loader({text}) {
+function Loader({text}:Props) {
   return (
     <div className='loader'>
     <div className="dot-spinner">
