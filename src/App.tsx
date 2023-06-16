@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
 import { Buffer } from 'buffer';
-import { ReefAccount, getReefExtension, getSignersWithEnoughBalance,  accountToReefAccount } from './util';
 import Loader from './components/Loader/Loader';
 import GradientButton from './components/GradientButton/GradientButton';
 import Navbar from './components/Navbar/Navbar';

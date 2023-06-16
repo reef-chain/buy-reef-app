@@ -1,6 +1,3 @@
-import { ReefAccount } from '../../util';
-import GradientButton from '../GradientButton/GradientButton';
-import SelectedAccountBubble from '../SelectedAccount/SelectedAccountBubble';
 import './styles.css'
 
 
