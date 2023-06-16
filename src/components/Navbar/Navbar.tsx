@@ -3,24 +3,11 @@ import GradientButton from '../GradientButton/GradientButton';
 import SelectedAccountBubble from '../SelectedAccount/SelectedAccountBubble';
 import './styles.css'
 
-interface Props{
-  switchAccount:()=>void;
-  shouldDisplayBtn:boolean;
-  account:ReefAccount;
-}
 
-function Navbar({account,switchAccount,shouldDisplayBtn}:Props) {
+function Navbar() {
   return (
     <div className='navbar'>
-        <img src='/reef-logo.svg' className='logo' alt="reef-logo" />
-    {shouldDisplayBtn?
-    <div className='navbar__select-account'>
-      <SelectedAccountBubble ReefAccount={account} />
-      <GradientButton title={'Switch Account'} func={switchAccount}/>
-    </div>
-  :<></>  
-  }
-        
+        <img src='/reef-logo.svg' className='logo' alt="reef-logo" />    
     </div>
   )
 }
