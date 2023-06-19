@@ -12,6 +12,7 @@ import { BuyPair } from './interfaces';
 const App = (): JSX.Element => {
   const [pairs, setPairs] = useState<BuyPair[]>([]);
   const [fiatOptions, setFiatOptions] = useState<string[]>([]);
+  const [selectedFiat,setSelectedFiat] = useState<string>();
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -23,6 +24,7 @@ const App = (): JSX.Element => {
           fetchedFiatOptions.push(fetchedPairs[i].fiatCurrency);
         }
         setFiatOptions(fetchedFiatOptions);
+        setSelectedFiat('EUR')
       } catch (error) {
         console.error('Error fetching pairs:', error);
       }
@@ -37,7 +39,7 @@ const App = (): JSX.Element => {
       <Navbar/>
       <InputField/> 
       <br /> 
-      <AmountInputField options={fiatOptions}/>
+      <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedFiat = {setSelectedFiat} />
       <br />
     </div>
   );
