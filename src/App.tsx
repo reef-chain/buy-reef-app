@@ -15,6 +15,7 @@ const App = (): JSX.Element => {
   const [fiatOptions, setFiatOptions] = useState<string[]>([]);
   const [selectedFiat,setSelectedFiat] = useState<string>();
   const [selectedAmount,setSelectedAmount] = useState<number>();
+  const [selectedReefAmount,setSelectedReefAmount] = useState<number>();
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -43,7 +44,7 @@ const App = (): JSX.Element => {
       <div className='buy-reef-dashboard'>
         <Header />
       <InputField/> 
-      <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedFiat = {setSelectedFiat}  />
+      <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedFiat = {setSelectedFiat} setSelectedAmount={setSelectedAmount} />
       </div>
       </div>
     </div>

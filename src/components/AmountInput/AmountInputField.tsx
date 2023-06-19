@@ -6,13 +6,18 @@ interface Props{
   options:string[];
   selectedFiat:string | undefined;
   setSelectedFiat:any;
+  setSelectedAmount:any;
 }
 
-function AmountInputField({options,selectedFiat,setSelectedFiat}:Props) {
+function AmountInputField({options,selectedFiat,setSelectedFiat,setSelectedAmount}:Props) {
 
   const handleFiatChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     setSelectedFiat(e.target.value);
   }
+
+  const handleAmountChange=(e:any)=>{
+    setSelectedAmount(e.target.value);
+  } 
 
   return (
     <div className='amount-input-field'>
@@ -30,7 +35,7 @@ function AmountInputField({options,selectedFiat,setSelectedFiat}:Props) {
       }
       <div>
       </div>
-        <input type="number" className = "amount-input-field--input" placeholder='0.0'/>
+        <input type="number" className = "amount-input-field--input" placeholder='0.0' onChange={handleAmountChange}/>
     </div>
   )
 }
