@@ -12,13 +12,14 @@
     margin-top: 20px;
 }
 .amount-input-field--input{
-    padding: 20px 10px 20px 25px;
+    padding: 20px 25px 20px 10px; 
     border: none;
     font-size: 16px;
     outline: none;
     max-width: 100px;
     min-width: 100px;
     border-radius: 10px;
+    text-align: end;
 }
 
 .amount-input-field--input::placeholder{
@@ -52,4 +53,10 @@
 .amount-input-field--container{
     display: flex;
     align-items: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

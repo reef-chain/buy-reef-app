@@ -73,7 +73,7 @@ function AmountInputField({options,selectedFiat,setSelectedFiat,setReefAmount,se
       </div>
       {options.length == 1?
       <input type="number" className = "amount-input-field--input" placeholder='0.0' onChange={handleReefChange} value={reefAmount}/>:
-        <input type="number" className = "amount-input-field--input" placeholder='0.0' onChange={handleAmountChange} value={amount}/>
+        <input type="number" className = "amount-input-field--input" placeholder='0.0' onChange={handleAmountChange} value={amount} />
     }
     </div>
   )
