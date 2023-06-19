@@ -17,6 +17,7 @@ const App = (): JSX.Element => {
   const [selectedAmount,setSelectedAmount] = useState<number>(0.0);
   const [selectedReefAmount,setSelectedReefAmount] = useState<number>(0.0);
   const [selectedBuyPair,setSelectedBuyPair] = useState<BuyPair>();
+  const [address,setAddress] = useState<string>();
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -40,6 +41,15 @@ const App = (): JSX.Element => {
   }, []);
 
   const getBtnLabel = ()=>{
+    if(selectedAmount<selectedBuyPair?.minLimit!){
+      return 'Amount too low. Minimum amount is '+selectedBuyPair?.minLimit!;
+    }else if(selectedAmount>selectedBuyPair?.maxLimit!){
+      return 'Amount too high. Maximum amount is '+selectedBuyPair?.minLimit!;
+    }else if(pairs.length == 0){
+      return 'Loading ...';
+    }else if(address?.length == 0 || !address){
+      return 'Please enter address';
+    }
     return 'Buy Reef'
   }
 
@@ -51,13 +61,12 @@ const App = (): JSX.Element => {
       
        <Header />
 
-      <InputField/> 
-
+      <InputField setAddress={setAddress} /> 
       <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair} setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel} />
 
       <AmountInputField options={['REEF']} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair}  setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel}/>
 
-      <GradientButton title={getBtnLabel()} />
+      <GradientButton title={getBtnLabel()} isEnabled={getBtnLabel()=='Buy Reef'}/>
       </div>
       </div>
     </div>

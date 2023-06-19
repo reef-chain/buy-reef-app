@@ -38,15 +38,17 @@
     border: none;
     white-space: nowrap;
     border-radius: 12px;
-    font-size: 0.875rem;
+    font-size: 16px;
     line-height: 1.1;
-    font-weight: 600;
-    padding: 12px 28px;
+    font-weight: 500;
+    padding: 16px 32px;
     user-select: none;
     font-weight: 500;
-    color: grey;
-    background: transparent;
+    color: white;
+    background: linear-gradient(135deg, #5d3bad, #5d3bad);
+    box-shadow: 0 5px 20px -10px #5d3bad;
     transition: all 0.125s;
-    margin: 20px;
-   letter-spacing: 0.8px;
+    margin: 35px;
+   letter-spacing: 0.5px;
+   width: 490px;
   }
