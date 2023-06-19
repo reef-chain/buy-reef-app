@@ -44,9 +44,12 @@ const App = (): JSX.Element => {
       <div className='buy-reef-dashboard'>
         <Header />
       <InputField/> 
+
       <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedFiat = {setSelectedFiat} setSelectedAmount={setSelectedAmount} amount = {selectedAmount} />
 
       <AmountInputField options={['REEF']} setSelectedAmount={setSelectedReefAmount} amount={selectedReefAmount} />
+
+      <GradientButton title={'an'} />
       </div>
       </div>
     </div>

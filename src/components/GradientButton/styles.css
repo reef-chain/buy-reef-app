@@ -18,8 +18,9 @@
   background: linear-gradient(135deg, #ae27a5, #742cb2);
   box-shadow: 0 5px 20px -10px #742cb2;
   transition: all 0.125s;
-  margin: 20px;
+  margin: 35px;
  letter-spacing: 0.5px;
+ width: 490px;
 }
 
 .gradient-button:hover {
