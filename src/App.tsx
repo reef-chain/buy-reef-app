@@ -8,11 +8,13 @@ import AmountInputField from './components/AmountInput/AmountInputField';
 import * as utils from './utils';
 import { useEffect,useState } from 'react';
 import { BuyPair } from './interfaces';
+import Header from './components/Header/Header';
 
 const App = (): JSX.Element => {
   const [pairs, setPairs] = useState<BuyPair[]>([]);
   const [fiatOptions, setFiatOptions] = useState<string[]>([]);
   const [selectedFiat,setSelectedFiat] = useState<string>();
+  const [selectedAmount,setSelectedAmount] = useState<number>();
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -37,10 +39,13 @@ const App = (): JSX.Element => {
   return (
     <div>
       <Navbar/>
+      <div className='center-container'>
+      <div className='buy-reef-dashboard'>
+        <Header />
       <InputField/> 
-      <br /> 
-      <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedFiat = {setSelectedFiat} />
-      <br />
+      <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedFiat = {setSelectedFiat}  />
+      </div>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,14 @@ import './styles.css'
 
 function Header() {
   return (
-    <div className='header'>Custom Reef EVM address</div>
+    <div className='header'>
+      <div>
+Buy Reef
+      </div>
+      <div className='header--tagline'>
+      Simply fill up Reef account with credit card 
+      </div>
+      </div>
   )
 }
 

@@ -4,6 +4,7 @@
     border-radius: 10px;
     font-size: 16px;
     outline: none;
+    margin-top: 20px;
 }
 
 .address-input-field::placeholder{

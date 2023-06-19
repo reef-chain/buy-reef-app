@@ -50,3 +50,20 @@
     background-color: transparent;  
   }
   
+.buy-reef-dashboard{
+    margin-top: 30px;
+    background-color: white;
+    min-width: 580px;
+    max-width: 580px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+  }
