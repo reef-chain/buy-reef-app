@@ -35,7 +35,10 @@ const App = (): JSX.Element => {
 
     fetchPairs()
   }, []);
-  
+
+  const getBtnLabel = ()=>{
+    return 'Buy Reef'
+  }
 
   return (
     <div>
@@ -49,7 +52,7 @@ const App = (): JSX.Element => {
 
       <AmountInputField options={['REEF']} setSelectedAmount={setSelectedReefAmount} amount={selectedReefAmount} />
 
-      <GradientButton title={'an'} />
+      <GradientButton title={getBtnLabel()} />
       </div>
       </div>
     </div>
