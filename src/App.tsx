@@ -6,17 +6,41 @@ import TextButton from './components/TextButton/TextButton';
 import InputField from './components/InputField/InputField';
 import AmountInputField from './components/AmountInput/AmountInputField';
 import * as utils from './utils';
+import { useEffect,useState } from 'react';
+import { BuyPair } from './interfaces';
 
 const App = (): JSX.Element => {
+  const [pairs, setPairs] = useState<BuyPair[]>([]);
+  const [fiatOptions, setFiatOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchPairs = async () => {
+      try {
+        const fetchedPairs = await utils.fetchPairs();
+        setPairs(fetchedPairs);
+        let fetchedFiatOptions = []
+        for (let i = 0; i < fetchedPairs.length; i++) {
+          fetchedFiatOptions.push(fetchedPairs[i].fiatCurrency);
+        }
+        setFiatOptions(fetchedFiatOptions);
+      } catch (error) {
+        console.error('Error fetching pairs:', error);
+      }
+    };
+
+    if (pairs.length === 0) {
+      fetchPairs();
+    }
+  }, [pairs]);
+  
 
   return (
     <div>
       <Navbar/>
       <InputField/> 
       <br /> 
-      <AmountInputField options={['option 1','option 2','option 3','option 4']}/>
+      <AmountInputField options={fiatOptions}/>
       <br />
-      <GradientButton title={'fetc'} func={utils.fetchPairs}/>
     </div>
   );
 };
