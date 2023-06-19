@@ -47,12 +47,14 @@ const App = (): JSX.Element => {
       return 'Amount too low. Minimum amount is '+selectedBuyPair?.minLimit!;
     }else if(selectedAmount>selectedBuyPair?.maxLimit!){
       return 'Amount too high. Maximum amount is '+selectedBuyPair?.minLimit!;
-    }else if(pairs.length == 0 || loading == true){
+    }else if(pairs.length == 0){
       return 'Loading ...';
     }else if(address?.length == 0 || !address){
       return 'Please enter address';
     }else if(address.length!=48){
       return 'Invalid address'
+    }else if(loading == true){
+      return 'Transaction in progress ...'
     }
     return 'Buy Reef'
   }

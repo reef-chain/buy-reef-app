@@ -51,7 +51,7 @@ function AmountInputField({options,selectedFiat,setSelectedFiat,setReefAmount,se
   return (
     <div className='amount-input-field'>
       {options.length == 0?<>
-      <Loader text='Fetching Available Pairs'/>
+      <Loader text='Fetching Available Currencies'/>
       </>:
       <div>
         {options.length == 1? <div className='amount-input-field--container'>
