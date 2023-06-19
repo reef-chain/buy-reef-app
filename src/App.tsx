@@ -51,7 +51,7 @@ const App = (): JSX.Element => {
       return 'Loading ...';
     }else if(address?.length == 0 || !address){
       return 'Please enter address';
-    }else if(address.length!=42){
+    }else if(address.length!=48){
       return 'Invalid address'
     }
     return 'Buy Reef'
@@ -62,7 +62,7 @@ const App = (): JSX.Element => {
     const tradePayload = {
       address: address,
       fiatCurrency: selectedFiat,
-      cryptoCurrency: 'REExF',
+      cryptoCurrency: 'REEF',
       orderAmount: selectedAmount,
       merchantRedirectUrl: 'https://app.reef.io/',
     } as BuyPayload
@@ -71,12 +71,14 @@ const App = (): JSX.Element => {
 
     try {
       const redirectUrl = trade.data.eternalRedirectUrl;
-   
-    window.open(redirectUrl, '_blank');
+      if(redirectUrl){
+        window.open(redirectUrl, '_blank');
+      }
     setLoading(false);
     } catch (error) {
       console.log(error)
     }
+    setLoading(false);
       getBtnLabel()
       setAddress('');
       setSelectedAmount(0.0);
