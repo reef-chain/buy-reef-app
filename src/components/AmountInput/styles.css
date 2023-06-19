@@ -40,3 +40,13 @@
     outline: none;
   }
   
+.amount-input-field--fiat-icon{
+    margin-left: 20px;
+    margin-top: -1px;
+    max-width: 25px;
+}
+
+.amount-input-field--container{
+    display: flex;
+    align-items: center;
+}

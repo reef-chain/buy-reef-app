@@ -12,11 +12,14 @@ function AmountInputField({options}:Props) {
       {options.length == 0?<>
       <Loader text='Fetching Available Pairs'/>
       </>:
+      <div className='amount-input-field--container'>
+      <img  className='amount-input-field--fiat-icon' src={`https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/EUR.svg`} alt="" />
       <select className="amount-input-field-dropdown">
       {options.map((option, index) => (
             <option key={index} value={option}>{option}</option>
           ))}
       </select>
+      </div>
       }
       <div>
       </div>
