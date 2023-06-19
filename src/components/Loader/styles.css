@@ -2,19 +2,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    margin-left: 30px;
 }
 
 .dot-spinner {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    margin-right: 20px;
   }
   
   .dot {
-    width: 10px;
-    height: 10px;
+    width: 2px;
+    height: 2px;
     margin: 0 4px;
     border-radius: 50%;
     background-color: #a93185;
@@ -24,10 +24,10 @@
   
   @keyframes spin {
     0% {
-      transform: rotate(0deg) translateX(20px) rotate(0deg);
+      transform: rotate(0deg) translateX(5px) rotate(0deg);
     }
     100% {
-      transform: rotate(360deg) translateX(20px) rotate(-360deg);
+      transform: rotate(360deg) translateX(5px) rotate(-360deg);
     }
   }
   
@@ -56,3 +56,8 @@
     transform: scale(0.9);
   }
   
+  .loader-text{
+    color: rgba(128, 128, 128, 0.59);
+    font-weight: 100;
+    font-size: 10px;
+  }

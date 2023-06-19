@@ -15,7 +15,9 @@ function Loader({text}:Props) {
   <div className="dot"></div>
   <div className="dot"></div>
     </div>
+    <div className='loader-text'>
     {text}
+    </div>
     </div>
 
   )

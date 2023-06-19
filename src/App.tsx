@@ -28,10 +28,8 @@ const App = (): JSX.Element => {
       }
     };
 
-    if (pairs.length === 0) {
-      fetchPairs();
-    }
-  }, [pairs]);
+    fetchPairs()
+  }, []);
   
 
   return (
