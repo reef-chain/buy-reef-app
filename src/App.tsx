@@ -7,7 +7,7 @@ import InputField from './components/InputField/InputField';
 import AmountInputField from './components/AmountInput/AmountInputField';
 import * as utils from './utils';
 import { useEffect,useState } from 'react';
-import { BuyPair } from './interfaces';
+import { BuyPair, BuyPayload } from './interfaces';
 import Header from './components/Header/Header';
 
 const App = (): JSX.Element => {
@@ -67,6 +67,13 @@ const App = (): JSX.Element => {
       <AmountInputField options={['REEF']} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair}  setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel}/>
 
       <GradientButton title={getBtnLabel()} isEnabled={getBtnLabel()=='Buy Reef'}/>
+      <GradientButton title={'fun btn'} func={()=>utils.createTrade({
+    address: '5FTqemG94aV9UFyWHLtTgCVHvE2SnPyjjDJ95TpZQZNSuAka',
+    fiatCurrency: 'EUR',
+    cryptoCurrency: 'REEF',
+    orderAmount: 100,
+    merchantRedirectUrl: 'https://app.reef.io/',
+      }as BuyPayload)}/>
       </div>
       </div>
     </div>

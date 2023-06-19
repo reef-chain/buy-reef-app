@@ -7,3 +7,11 @@ export interface BuyPair{
     paymentMethod:string;
     size:number;
 }
+
+export interface BuyPayload{
+    address: string,
+    fiatCurrency: string,
+    cryptoCurrency: string,
+    orderAmount: number,
+    merchantRedirectUrl: 'https://app.reef.io/',
+  };
