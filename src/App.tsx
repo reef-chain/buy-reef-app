@@ -16,6 +16,7 @@ const App = (): JSX.Element => {
   const [selectedFiat,setSelectedFiat] = useState<string>();
   const [selectedAmount,setSelectedAmount] = useState<number>(0.0);
   const [selectedReefAmount,setSelectedReefAmount] = useState<number>(0.0);
+  const [selectedBuyPair,setSelectedBuyPair] = useState<BuyPair>();
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -28,6 +29,8 @@ const App = (): JSX.Element => {
         }
         setFiatOptions(fetchedFiatOptions);
         setSelectedFiat('EUR')
+        const fetchedBuyPair = utils.getPairByFiat(fetchedPairs,'EUR');
+        setSelectedBuyPair(fetchedBuyPair);
       } catch (error) {
         console.error('Error fetching pairs:', error);
       }
@@ -45,12 +48,14 @@ const App = (): JSX.Element => {
       <Navbar/>
       <div className='center-container'>
       <div className='buy-reef-dashboard'>
-        <Header />
+      
+       <Header />
+
       <InputField/> 
 
-      <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedFiat = {setSelectedFiat} setSelectedAmount={setSelectedAmount} amount = {selectedAmount} />
+      <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair} setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel} />
 
-      <AmountInputField options={['REEF']} setSelectedAmount={setSelectedReefAmount} amount={selectedReefAmount} />
+      <AmountInputField options={['REEF']} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair}  setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel}/>
 
       <GradientButton title={getBtnLabel()} />
       </div>

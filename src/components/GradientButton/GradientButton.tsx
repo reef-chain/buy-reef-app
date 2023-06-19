@@ -4,7 +4,7 @@ import './styles.css'
 export interface Props{
     func?:any;
     title:String;
-    isEnabled?:false;
+    isEnabled?:boolean;
 }
 
 function GradientButton({func,title,isEnabled}:Props) {
