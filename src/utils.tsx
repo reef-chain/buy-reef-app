@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { BuyPair } from './interfaces';
 
-const binanceConnectApiUrl = "https://onramp.reefscan.info";
+export const binanceConnectApiUrl = "https://onramp.reefscan.info";
+export const reefTokenIconUrl = "https://s2.coinmarketcap.com/static/img/coins/64x64/6951.png";
 
 const binanceConnectApi = axios.create({ baseURL: binanceConnectApiUrl });
 

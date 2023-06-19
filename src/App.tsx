@@ -45,6 +45,8 @@ const App = (): JSX.Element => {
         <Header />
       <InputField/> 
       <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedFiat = {setSelectedFiat} setSelectedAmount={setSelectedAmount} />
+
+      <AmountInputField options={['REEF']} />
       </div>
       </div>
     </div>
