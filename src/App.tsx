@@ -18,6 +18,7 @@ const App = (): JSX.Element => {
   const [selectedReefAmount,setSelectedReefAmount] = useState<number>(0.0);
   const [selectedBuyPair,setSelectedBuyPair] = useState<BuyPair>();
   const [address,setAddress] = useState<string>();
+  const [loading,setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -35,6 +36,7 @@ const App = (): JSX.Element => {
       } catch (error) {
         console.error('Error fetching pairs:', error);
       }
+
     };
 
     fetchPairs()
@@ -45,12 +47,40 @@ const App = (): JSX.Element => {
       return 'Amount too low. Minimum amount is '+selectedBuyPair?.minLimit!;
     }else if(selectedAmount>selectedBuyPair?.maxLimit!){
       return 'Amount too high. Maximum amount is '+selectedBuyPair?.minLimit!;
-    }else if(pairs.length == 0){
+    }else if(pairs.length == 0 || loading == true){
       return 'Loading ...';
     }else if(address?.length == 0 || !address){
       return 'Please enter address';
+    }else if(address.length!=42){
+      return 'Invalid address'
     }
     return 'Buy Reef'
+  }
+
+  const buy = async()=>{
+    setLoading(true);
+    const tradePayload = {
+      address: address,
+      fiatCurrency: selectedFiat,
+      cryptoCurrency: 'REExF',
+      orderAmount: selectedAmount,
+      merchantRedirectUrl: 'https://app.reef.io/',
+    } as BuyPayload
+
+    const trade = await utils.createTrade(tradePayload);
+
+    try {
+      const redirectUrl = trade.data.eternalRedirectUrl;
+   
+    window.open(redirectUrl, '_blank');
+    setLoading(false);
+    } catch (error) {
+      console.log(error)
+    }
+      getBtnLabel()
+      setAddress('');
+      setSelectedAmount(0.0);
+      setSelectedReefAmount(0.0);
   }
 
   return (
@@ -66,14 +96,7 @@ const App = (): JSX.Element => {
 
       <AmountInputField options={['REEF']} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair}  setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel}/>
 
-      <GradientButton title={getBtnLabel()} isEnabled={getBtnLabel()=='Buy Reef'}/>
-      <GradientButton title={'fun btn'} func={()=>utils.createTrade({
-    address: '5FTqemG94aV9UFyWHLtTgCVHvE2SnPyjjDJ95TpZQZNSuAka',
-    fiatCurrency: 'EUR',
-    cryptoCurrency: 'REEF',
-    orderAmount: 100,
-    merchantRedirectUrl: 'https://app.reef.io/',
-      }as BuyPayload)}/>
+      <GradientButton title={getBtnLabel()} isEnabled={getBtnLabel()=='Buy Reef'} func={buy}/>
       </div>
       </div>
     </div>
