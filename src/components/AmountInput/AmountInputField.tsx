@@ -8,9 +8,10 @@ interface Props{
   selectedFiat?:string | undefined;
   setSelectedFiat?:any;
   setSelectedAmount?:any;
+  amount:number;
 }
 
-function AmountInputField({options,selectedFiat,setSelectedFiat,setSelectedAmount}:Props) {
+function AmountInputField({options,selectedFiat,setSelectedFiat,setSelectedAmount,amount}:Props) {
 
   const handleFiatChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     setSelectedFiat(e.target.value);
@@ -43,7 +44,7 @@ function AmountInputField({options,selectedFiat,setSelectedFiat,setSelectedAmoun
       }
       <div>
       </div>
-        <input type="number" className = "amount-input-field--input" placeholder='0.0' onChange={handleAmountChange}/>
+        <input type="number" className = "amount-input-field--input" placeholder='0.0' onChange={handleAmountChange} value={amount}/>
     </div>
   )
 }
