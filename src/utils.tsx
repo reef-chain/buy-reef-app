@@ -10,7 +10,7 @@ export const fetchPairs = async (): Promise<BuyPair[]> => {
     try {
       const response: AxiosResponse<BuyPair[]> = await binanceConnectApi.get('/get-pairs');
       return response.data ;
-      
+
     } catch (error) {
       console.error('Error fetching pairs:', error);
       return []
@@ -35,12 +35,12 @@ export const authenticate = async (address:string): Promise<any> => {
       Authorization: `Bearer ${jwt}`,
     },
   });
-  
+
 export const createTrade = async (buypayload:BuyPayload): Promise<any> => {
     try {
       console.log(hardCodedJWT)
       const response: AxiosResponse<any> = await binanceConnectApi.post('/buy',buypayload,getAuthHeader(hardCodedJWT));
-      console.log(response);
+      console.log('binance BUY res=',response);
       return response ;
     } catch (error) {
       console.error('Error fetching pairs:', error);
