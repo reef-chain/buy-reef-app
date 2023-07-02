@@ -1,0 +1,21 @@
+.address-input-field{
+    padding: 20px 25px 20px 25px;
+    border: 2px solid  rgba(181, 181, 181, 0.334);
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    margin-top: 20px;
+    width: 100%;
+    min-width: 440px;
+}
+
+.address-input-field::placeholder{
+    color: rgba(181, 181, 181, 0.618);
+}
+
+.address-input-field:focus{
+   border: 2px solid rgba(181, 181, 181, 0.618);
+}
+.address-input-field:hover{
+   border: 2px solid rgba(181, 181, 181, 0.618);
+}
