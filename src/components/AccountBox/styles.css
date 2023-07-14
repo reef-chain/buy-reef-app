@@ -27,3 +27,10 @@
     align-items: center;
     justify-self: center;
 }
+.dropdown-account-selection-chevron{
+    transform: rotate(270deg);
+    font-weight: thin;
+    padding: 4px;
+    position: relative;
+    left: 170px;
+}
