@@ -8,6 +8,8 @@ import * as utils from './utils';
 import { useEffect,useState } from 'react';
 import { BuyPair, BuyPayload } from './interfaces';
 import Header from './components/Header/Header';
+import { web3Accounts } from '@reef-defi/extension-dapp';
+import AccountBox from './components/AccountBox/AccountBox';
 
 const App = (): JSX.Element => {
   const [pairs, setPairs] = useState<BuyPair[]>([]);
@@ -18,6 +20,11 @@ const App = (): JSX.Element => {
   const [selectedBuyPair,setSelectedBuyPair] = useState<BuyPair>();
   const [address,setAddress] = useState<string>();
   const [loading,setLoading] = useState<boolean>(false);
+  const [accounts,setAccounts] = useState<any>([]);
+
+  useEffect(()=>{
+    getAccounts()
+  },[])
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -40,6 +47,24 @@ const App = (): JSX.Element => {
 
     fetchPairs()
   }, []);
+
+  const getAccounts = async()=>{
+    try {
+      let extension = await utils.getReefExtension("Buy Reef App")
+      if (!extension) {
+        console.log('extension not installed! trying again ... ');
+        extension = await utils.getReefExtension('Reef EVM connection');
+      }
+        const allAccounts = await web3Accounts();
+        const reefAccounts = []
+        for(let i=0;i<allAccounts.length;i++){
+          reefAccounts.push(utils.accountToReefAccount(allAccounts[i]))
+        }
+        setAccounts(reefAccounts);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const getBtnLabel = ()=>{
     if(selectedAmount<selectedBuyPair?.minLimit!){
@@ -93,7 +118,11 @@ const App = (): JSX.Element => {
       <div className='buy-reef-dashboard'>
       
        <Header />
-
+       {accounts.map((account:any)=>{
+        return(
+          <AccountBox name={account.name} address={account.address} />
+        )
+       })}
       <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair} setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel} />
 
       <AmountInputField options={['REEF']} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair}  setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel}/>

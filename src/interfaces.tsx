@@ -15,3 +15,9 @@ export interface BuyPayload{
     orderAmount: number,
     merchantRedirectUrl: 'https://app.reef.io/',
   };
+
+export interface ReefAccount{
+    address:string,
+    name:string,
+    evmAddress:string
+}

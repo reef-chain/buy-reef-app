@@ -1,0 +1,12 @@
+.dropdown-account-selection{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    align-self: flex-start;
+}
+
+.dropdown-account-selection-name{
+    padding-right: 4px;
+    padding-left: 4px;
+    font-weight: 600;
+}
