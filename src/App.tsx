@@ -3,12 +3,13 @@ import Loader from './components/Loader/Loader';
 import GradientButton from './components/GradientButton/GradientButton';
 import Navbar from './components/Navbar/Navbar';
 import TextButton from './components/TextButton/TextButton';
-import InputField from './components/InputField/InputField';
 import AmountInputField from './components/AmountInput/AmountInputField';
 import * as utils from './utils';
 import { useEffect,useState } from 'react';
-import { BuyPair, BuyPayload } from './interfaces';
+import { BuyPair, BuyPayload, ReefAccount } from './interfaces';
 import Header from './components/Header/Header';
+import { web3Accounts } from '@reef-defi/extension-dapp';
+import AccountBox from './components/AccountBox/AccountBox';
 
 const App = (): JSX.Element => {
   const [pairs, setPairs] = useState<BuyPair[]>([]);
@@ -19,6 +20,13 @@ const App = (): JSX.Element => {
   const [selectedBuyPair,setSelectedBuyPair] = useState<BuyPair>();
   const [address,setAddress] = useState<string>();
   const [loading,setLoading] = useState<boolean>(false);
+  const [accounts,setAccounts] = useState<any>([]);
+  const [dropdown,setDropdown] = useState<boolean>(false);
+  const [selectedReefAccount,setSelectedReefAccount] = useState<ReefAccount>();
+
+  useEffect(()=>{
+    getAccounts()
+  },[])
 
   useEffect(() => {
     const fetchPairs = async () => {
@@ -41,6 +49,25 @@ const App = (): JSX.Element => {
 
     fetchPairs()
   }, []);
+
+  const getAccounts = async()=>{
+    try {
+      let extension = await utils.getReefExtension("Buy Reef App")
+      if (!extension) {
+        console.log('extension not installed! trying again ... ');
+        extension = await utils.getReefExtension('Reef EVM connection');
+      }
+        const allAccounts = await web3Accounts();
+        const reefAccounts = []
+        for(let i=0;i<allAccounts.length;i++){
+          reefAccounts.push(utils.accountToReefAccount(allAccounts[i]))
+        }
+        setAccounts(reefAccounts);
+        setSelectedReefAccount(reefAccounts[0]);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const getBtnLabel = ()=>{
     if(selectedAmount<selectedBuyPair?.minLimit!){
@@ -95,7 +122,21 @@ const App = (): JSX.Element => {
       
        <Header />
 
-      <InputField setAddress={setAddress} /> 
+       {accounts.length == 0?<>
+       Extension is not installed</>:
+       <div className='selected-wallet-address-dropdown'>
+       {dropdown?
+       <div className='selected-wallet-address-dropdown-list'>
+       {accounts.map((account:any)=>{
+        return(
+          <AccountBox name={account.name} address={account.address} setDropdown={setDropdown} dropdown={dropdown} setSelectedReefAccount={setSelectedReefAccount}/>
+        )
+       })}
+       </div>:
+       <AccountBox name={selectedReefAccount!.name} address={selectedReefAccount!.address} shouldDisplayChevron={true} setDropdown={setDropdown} dropdown={dropdown} setSelectedReefAccount={setSelectedReefAccount}/>
+      }
+       </div>}
+       
       <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair} setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel} />
 
       <AmountInputField options={['REEF']} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair}  setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel}/>
