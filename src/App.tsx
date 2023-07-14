@@ -124,16 +124,16 @@ const App = (): JSX.Element => {
 
        {accounts.length == 0?<>
        Extension is not installed</>:
-       <div className='selected-wallet-address-dropdown' onClick={()=>setDropdown(!dropdown)}>
+       <div className='selected-wallet-address-dropdown'>
        {dropdown?
        <div className='selected-wallet-address-dropdown-list'>
        {accounts.map((account:any)=>{
         return(
-          <AccountBox name={account.name} address={account.address} />
+          <AccountBox name={account.name} address={account.address} setDropdown={setDropdown} dropdown={dropdown} setSelectedReefAccount={setSelectedReefAccount}/>
         )
        })}
        </div>:
-       <AccountBox name={selectedReefAccount!.name} address={selectedReefAccount!.address} shouldDisplayChevron={true}/>
+       <AccountBox name={selectedReefAccount!.name} address={selectedReefAccount!.address} shouldDisplayChevron={true} setDropdown={setDropdown} dropdown={dropdown} setSelectedReefAccount={setSelectedReefAccount}/>
       }
        </div>}
        

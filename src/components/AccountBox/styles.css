@@ -3,14 +3,7 @@
     align-items: center;
     font-size: 14px;
     align-self: flex-start;
-    width: 470px;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #eff2f6;
-}
-
-.dropdown-account-selection:hover{
-    background: #eeebf6;
+    width: 455px;
 }
 
 .dropdown-account-selection-name{
@@ -27,10 +20,22 @@
     align-items: center;
     justify-self: center;
 }
+  
+.dropdown-account-selection-component{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #eff2f6;
+    justify-content: flex-start;
+    margin-bottom: 2px;
+}
+.dropdown-account-selection-component:hover{
+    background: #eeebf6;
+}
+
 .dropdown-account-selection-chevron{
-    transform: rotate(270deg);
-    font-weight: thin;
     padding: 4px;
-    position: relative;
-    left: 170px;
+    transform: rotate(270deg);
+    cursor: pointer;
 }
