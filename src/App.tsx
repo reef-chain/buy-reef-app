@@ -3,7 +3,6 @@ import Loader from './components/Loader/Loader';
 import GradientButton from './components/GradientButton/GradientButton';
 import Navbar from './components/Navbar/Navbar';
 import TextButton from './components/TextButton/TextButton';
-import InputField from './components/InputField/InputField';
 import AmountInputField from './components/AmountInput/AmountInputField';
 import * as utils from './utils';
 import { useEffect,useState } from 'react';
