@@ -3,6 +3,13 @@
     align-items: center;
     font-size: 14px;
     align-self: flex-start;
+    width: 500px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.dropdown-account-selection:hover{
+    background: #eeebf6;
 }
 
 .dropdown-account-selection-name{
