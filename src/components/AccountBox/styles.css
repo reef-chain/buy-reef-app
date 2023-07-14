@@ -3,9 +3,10 @@
     align-items: center;
     font-size: 14px;
     align-self: flex-start;
-    width: 500px;
+    width: 470px;
     padding: 10px;
     border-radius: 10px;
+    border: 2px solid #eff2f6;
 }
 
 .dropdown-account-selection:hover{
@@ -13,7 +14,16 @@
 }
 
 .dropdown-account-selection-name{
-    padding-right: 4px;
-    padding-left: 4px;
+    margin-right: 6px;
+    margin-left: 6px;
     font-weight: 600;
+    background-color: #eeebf6;
+    border-radius: 10px;
+    padding: 2px 6px 2px 6px;
+}
+
+.selected-wallet-address-dropdown{
+    display: flex;
+    align-items: center;
+    justify-self: center;
 }
