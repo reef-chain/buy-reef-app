@@ -1,8 +1,5 @@
-import { Buffer } from 'buffer';
-import Loader from './components/Loader/Loader';
 import GradientButton from './components/GradientButton/GradientButton';
 import Navbar from './components/Navbar/Navbar';
-import TextButton from './components/TextButton/TextButton';
 import AmountInputField from './components/AmountInput/AmountInputField';
 import * as utils from './utils';
 import { useEffect,useState } from 'react';
@@ -69,6 +66,9 @@ const App = (): JSX.Element => {
   }
 
   const getBtnLabel = ()=>{
+    if(accounts.length===0){
+      return "Install REEF Extension"
+    }
     if(selectedAmount<selectedBuyPair?.minLimit!){
       return 'Amount too low. Minimum amount is '+selectedBuyPair?.minLimit!;
     }else if(selectedAmount>selectedBuyPair?.maxLimit!){
@@ -86,6 +86,7 @@ const App = (): JSX.Element => {
   }
 
   const buy = async()=>{
+    if(getBtnLabel()!="Buy Reef")return;
     setLoading(true);
     const tradePayload = {
       address: selectedReefAccount?.address,
@@ -130,7 +131,7 @@ const App = (): JSX.Element => {
       
        <Header />
        {accounts.length == 0?<>
-       Extension is not installed</>:
+       </>:
        <div className='selected-wallet-address-dropdown'>
        {dropdown?
        <div className='selected-wallet-address-dropdown-list'>

@@ -21,17 +21,6 @@ export const fetchPairs = async (): Promise<BuyPair[]> => {
     }
   };
 
-export const authenticate = async (address:string): Promise<any> => {
-    try {
-      const response: AxiosResponse<any> = await binanceConnectApi.get(`/test/generate-jwt/${'5FTqemG94aV9UFyWHLtTgCVHvE2SnPyjjDJ95TpZQZNSuAka'}`);
-      console.log(response);
-      return response ;
-    } catch (error) {
-      console.error('Error fetching pairs:', error);
-      return []
-    }
-  };
-
   const getAuthHeader = (jwt: string): Record<string, unknown> => ({
     headers: {
       Authorization: `Bearer ${jwt}`,
