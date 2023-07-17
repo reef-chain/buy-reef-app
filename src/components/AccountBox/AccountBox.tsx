@@ -14,7 +14,7 @@ interface Props{
 
 function AccountBox({name,address,shouldDisplayChevron,setDropdown,dropdown,setSelectedReefAccount}:Props) {
   return (
-    <div  className="dropdown-account-selection-component" key={address} onClick={()=>{
+    <div  className={shouldDisplayChevron?'dropdown-account-selection-component':'dropdown-account-selection-component-nc'} key={address} onClick={()=>{
         setSelectedReefAccount({name:name,address:address} as ReefAccount);
         setDropdown(!dropdown)
         }}>

@@ -30,7 +30,19 @@
     justify-content: flex-start;
     margin-bottom: 2px;
 }
+.dropdown-account-selection-component-nc{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    justify-content: flex-start;
+    margin-bottom: 2px;
+    font-size: 8px;
+}
 .dropdown-account-selection-component:hover{
+    background: #eeebf6;
+}
+.dropdown-account-selection-component-nc:hover{
     background: #eeebf6;
 }
 
@@ -38,4 +50,9 @@
     padding: 4px;
     transform: rotate(270deg);
     cursor: pointer;
+}
+
+.selected-wallet-address-dropdown-list{
+    border: 1px solid #eff2f6;
+    border-radius: 10px;
 }
