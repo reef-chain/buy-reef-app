@@ -8,7 +8,7 @@ import * as utils from './utils';
 import { useEffect,useState } from 'react';
 import { BuyPair, BuyPayload, ReefAccount } from './interfaces';
 import Header from './components/Header/Header';
-import { web3Accounts } from '@reef-defi/extension-dapp';
+import { web3Accounts, web3Enable, web3FromSource } from '@reef-defi/extension-dapp';
 import AccountBox from './components/AccountBox/AccountBox';
 
 const App = (): JSX.Element => {
@@ -18,7 +18,6 @@ const App = (): JSX.Element => {
   const [selectedAmount,setSelectedAmount] = useState<number>(0.0);
   const [selectedReefAmount,setSelectedReefAmount] = useState<number>(0.0);
   const [selectedBuyPair,setSelectedBuyPair] = useState<BuyPair>();
-  const [address,setAddress] = useState<string>();
   const [loading,setLoading] = useState<boolean>(false);
   const [accounts,setAccounts] = useState<any>([]);
   const [dropdown,setDropdown] = useState<boolean>(false);
@@ -76,9 +75,9 @@ const App = (): JSX.Element => {
       return 'Amount too high. Maximum amount is '+selectedBuyPair?.minLimit!;
     }else if(pairs.length == 0){
       return 'Loading ...';
-    }else if(address?.length == 0 || !address){
+    }else if(selectedReefAccount?.address?.length == 0 || !selectedReefAccount?.address){
       return 'Please enter address';
-    }else if(address.length!=48){
+    }else if(selectedReefAccount.address.length!=48){
       return 'Invalid address'
     }else if(loading == true){
       return 'Transaction in progress ...'
@@ -89,29 +88,38 @@ const App = (): JSX.Element => {
   const buy = async()=>{
     setLoading(true);
     const tradePayload = {
-      address: address,
+      address: selectedReefAccount?.address,
       fiatCurrency: selectedFiat,
       cryptoCurrency: 'REEF',
       orderAmount: selectedAmount,
       merchantRedirectUrl: 'https://app.reef.io/',
     } as BuyPayload
 
-    const trade = await utils.createTrade(tradePayload);
-
-    try {
+    const {message}= await utils.getAddressNonceMessage(selectedReefAccount?.address!);
+    await web3Enable('Reef Wallet App');
+    const [account] = await web3Accounts();
+    const injector = await web3FromSource(account.meta.source);
+    const signRaw = await injector?.signer?.signRaw;
+    if (signRaw != null) {
+      const { signature } = await signRaw({
+        address: selectedReefAccount!.address,
+        data: message,
+        type: 'bytes',
+      });
+      const {authenticated,token}=await utils.generateJWT(selectedReefAccount!.address,signature);
+      if(authenticated){
+        const trade = await utils.createTrade(tradePayload,token);
+    console.log(trade)
       const redirectUrl = trade.data.eternalRedirectUrl;
       if(redirectUrl){
         window.open(redirectUrl, '_blank');
       }
     setLoading(false);
-    } catch (error) {
-      console.log(error)
-    }
-    setLoading(false);
       getBtnLabel()
-      setAddress('');
       setSelectedAmount(0.0);
       setSelectedReefAmount(0.0);
+      }
+    }
   }
 
   return (
@@ -121,7 +129,6 @@ const App = (): JSX.Element => {
       <div className='buy-reef-dashboard'>
       
        <Header />
-
        {accounts.length == 0?<>
        Extension is not installed</>:
        <div className='selected-wallet-address-dropdown'>

@@ -21,3 +21,7 @@ export interface ReefAccount{
     name:string,
     evmAddress:string
 }
+
+export interface GetAddressNonceMessageResponse{
+    message:string;
+}
