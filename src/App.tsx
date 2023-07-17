@@ -72,7 +72,7 @@ const App = (): JSX.Element => {
     if(selectedAmount<selectedBuyPair?.minLimit!){
       return 'Amount too low. Minimum amount is '+selectedBuyPair?.minLimit!;
     }else if(selectedAmount>selectedBuyPair?.maxLimit!){
-      return 'Amount too high. Maximum amount is '+selectedBuyPair?.minLimit!;
+      return 'Amount too high. Maximum amount is '+selectedBuyPair?.maxLimit!;
     }else if(pairs.length == 0){
       return 'Loading ...';
     }else if(selectedReefAccount?.address?.length == 0 || !selectedReefAccount?.address){
