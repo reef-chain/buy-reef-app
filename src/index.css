@@ -67,3 +67,23 @@
     align-items: center;
     width: 100vw;
   }
+
+.extension-download-btn{
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 60px;
+    background: #a93185;
+    font-weight: 400;
+    color: white;
+    margin-right: 10px;
+}
+
+.extension-download-btn:hover{
+    background: #5d3bad;
+}
+
+.extension-download-btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

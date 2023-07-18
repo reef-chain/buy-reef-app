@@ -152,6 +152,12 @@ const App = (): JSX.Element => {
       <GradientButton title={getBtnLabel()} isEnabled={getBtnLabel()=='Buy Reef'} func={buy}/>
       </div>
       </div>
+      {accounts.length == 0?
+      <div className='extension-download-btn-container'>
+      <a className='extension-download-btn' href="https://addons.mozilla.org/en-US/firefox/addon/reef-js-extension/">Download for Firefox</a>
+      <a className='extension-download-btn' href="https://chrome.google.com/webstore/detail/reef-chain-wallet-extensi/mjgkpalnahacmhkikiommfiomhjipgjn">Download for Chrome</a>
+      </div>
+:<></>}
     </div>
   );
 };
