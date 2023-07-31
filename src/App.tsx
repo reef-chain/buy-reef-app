@@ -67,7 +67,7 @@ const App = (): JSX.Element => {
 
   const getBtnLabel = ()=>{
     if(accounts.length===0){
-      return "Install REEF Extension"
+      return "Install REEF Extension and refresh"
     }
     if(selectedAmount<selectedBuyPair?.minLimit!){
       return 'Amount too low. Minimum amount is '+selectedBuyPair?.minLimit!;
@@ -128,7 +128,7 @@ const App = (): JSX.Element => {
       <Navbar/>
       <div className='center-container'>
       <div className='buy-reef-dashboard'>
-      
+
        <Header />
        {accounts.length == 0?<>
        </>:
@@ -144,7 +144,7 @@ const App = (): JSX.Element => {
        <AccountBox name={selectedReefAccount!.name} address={selectedReefAccount!.address} shouldDisplayChevron={true} setDropdown={setDropdown} dropdown={dropdown} setSelectedReefAccount={setSelectedReefAccount}/>
       }
        </div>}
-       
+
       <AmountInputField selectedFiat={selectedFiat} options={fiatOptions} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair} setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel} />
 
       <AmountInputField options={['REEF']} setSelectedAmount={setSelectedAmount} setSelectedBuyPair={setSelectedBuyPair}  setSelectedFiat={setSelectedFiat} reefAmount={selectedReefAmount}  setReefAmount={setSelectedReefAmount} amount={selectedAmount} selectedBuyPair = {selectedBuyPair} allPairs={pairs} handleBtnLabel={getBtnLabel}/>
