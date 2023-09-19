@@ -7,6 +7,7 @@ import { BuyPair, BuyPayload, ReefAccount } from './interfaces';
 import Header from './components/Header/Header';
 import { web3Accounts, web3Enable, web3FromSource } from '@reef-defi/extension-dapp';
 import AccountBox from './components/AccountBox/AccountBox';
+import { REEF_EXTENSION_IDENT } from '@reef-defi/extension-inject';
 
 const App = (): JSX.Element => {
   const [pairs, setPairs] = useState<BuyPair[]>([]);
@@ -17,6 +18,7 @@ const App = (): JSX.Element => {
   const [selectedBuyPair,setSelectedBuyPair] = useState<BuyPair>();
   const [loading,setLoading] = useState<boolean>(false);
   const [accounts,setAccounts] = useState<any>([]);
+  const [isExtInstalled,setIsExtInstalled] = useState<boolean>(false)
   const [dropdown,setDropdown] = useState<boolean>(false);
   const [selectedReefAccount,setSelectedReefAccount] = useState<ReefAccount>();
 
@@ -53,6 +55,9 @@ const App = (): JSX.Element => {
         console.log('extension not installed! trying again ... ');
         extension = await utils.getReefExtension('Reef EVM connection');
       }
+      const allExtensions = await web3Enable('Reef Wallet App');
+      const reefExt = allExtensions.find((ext) => ext.name === REEF_EXTENSION_IDENT);
+      if(reefExt)setIsExtInstalled(true);
         const allAccounts = await web3Accounts();
         const reefAccounts = []
         for(let i=0;i<allAccounts.length;i++){
@@ -66,8 +71,11 @@ const App = (): JSX.Element => {
   }
 
   const getBtnLabel = ()=>{
+    if(!isExtInstalled){
+      return "Install REEF Extension!"
+    }
     if(accounts.length===0){
-      return "Install REEF Extension and refresh"
+      return "You need to create an account"
     }
     if(selectedAmount<selectedBuyPair?.minLimit!){
       return 'Amount too low. Minimum amount is '+selectedBuyPair?.minLimit!;
@@ -97,7 +105,6 @@ const App = (): JSX.Element => {
     } as BuyPayload
 
     const {message}= await utils.getAddressNonceMessage(selectedReefAccount?.address!);
-    await web3Enable('Reef Wallet App');
     const [account] = await web3Accounts();
     const injector = await web3FromSource(account.meta.source);
     const signRaw = await injector?.signer?.signRaw;
